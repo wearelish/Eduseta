@@ -1,3 +1,5 @@
+import { colleges } from "../data/colleges";
+import CollegeCard from "../components/CollegeCard";
 export default function Home() {
   return (
     <section className="pt-32 px-6 max-w-7xl mx-auto">
@@ -12,7 +14,13 @@ export default function Home() {
       </p>
 
       {/* Search Bar */}
-      <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/10 grid md:grid-cols-4 gap-4">
+      {/* College Grid */}
+<div className="grid md:grid-cols-3 gap-6 mt-14">
+  {colleges.map((college) => (
+    <CollegeCard key={college.id} college={college} />
+  ))}
+</div>
+<div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/10 grid md:grid-cols-4 gap-4">
 
         <input
           placeholder="Course (B.Tech, MBA...)"
