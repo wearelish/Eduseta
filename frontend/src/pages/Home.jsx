@@ -2,7 +2,7 @@ import { useState } from "react";
 import { colleges } from "../data/colleges";
 import CollegeCard from "../components/CollegeCard";
 
-export default function Home() {
+export default function Home({ compareList, setCompareList }) {
   const [course, setCourse] = useState("");
   const [city, setCity] = useState("");
   const [type, setType] = useState("");
@@ -20,21 +20,20 @@ export default function Home() {
 
   return (
     <section className="pt-32 px-6 max-w-7xl mx-auto">
-      {/* Heading */}
+
       <h1 className="text-5xl font-bold mb-6">
         Find the Best Colleges in Haryana
       </h1>
 
       <p className="text-white/70 max-w-2xl mb-10">
-        Search, compare, and explore colleges by course, city, budget and type —
-        built for Haryana students.
+        Search, compare, and explore colleges by course, city, budget and type.
       </p>
 
-      {/* Search Bar */}
+      {/* Filters */}
       <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/10 grid md:grid-cols-5 gap-4">
 
         <input
-          placeholder="Course (B.Tech, MBA...)"
+          placeholder="Course"
           value={course}
           onChange={(e) => setCourse(e.target.value)}
           className="bg-black/40 p-3 rounded-xl outline-none"
@@ -49,7 +48,7 @@ export default function Home() {
 
         <input
           type="number"
-          placeholder="Max Fees (₹)"
+          placeholder="Max Fees"
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
           className="bg-black/40 p-3 rounded-xl outline-none"
@@ -65,20 +64,22 @@ export default function Home() {
           <option value="Private">Private</option>
         </select>
 
-        <button
-          onClick={() => {}}
-          className="bg-blue-600 hover:bg-blue-700 rounded-xl p-3 font-semibold"
-        >
+        <button className="bg-blue-600 rounded-xl font-semibold">
           Search
         </button>
 
       </div>
 
-      {/* College Grid */}
+      {/* Cards */}
       <div className="grid md:grid-cols-3 gap-6 mt-14">
         {filteredColleges.length > 0 ? (
           filteredColleges.map((college) => (
-            <CollegeCard key={college.id} college={college} />
+            <CollegeCard
+              key={college.id}
+              college={college}
+              compareList={compareList}
+              setCompareList={setCompareList}
+            />
           ))
         ) : (
           <p className="text-white/60 col-span-3 text-center">
@@ -86,6 +87,7 @@ export default function Home() {
           </p>
         )}
       </div>
+
     </section>
   );
 }
