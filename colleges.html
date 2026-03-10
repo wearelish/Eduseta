@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Colleges - Haryana College Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Haryana Colleges</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="colleges.html">Colleges</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="compare.html">Compare</a></li>
+                <li><a href="admission.html">Admission Guide</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>All Colleges in Haryana</h2>
+        </div>
+    </section>
+
+    <section class="colleges-section">
+        <div class="container">
+            <div class="filters-sidebar">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <h4>City</h4>
+                    <label><input type="checkbox" value="Gurgaon" onchange="applyFilters()"> Gurgaon</label>
+                    <label><input type="checkbox" value="Faridabad" onchange="applyFilters()"> Faridabad</label>
+                    <label><input type="checkbox" value="Karnal" onchange="applyFilters()"> Karnal</label>
+                    <label><input type="checkbox" value="Rohtak" onchange="applyFilters()"> Rohtak</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Type</h4>
+                    <label><input type="checkbox" value="Government" onchange="applyFilters()"> Government</label>
+                    <label><input type="checkbox" value="Private" onchange="applyFilters()"> Private</label>
+                </div>
+                <div class="filter-group">
+                    <h4>Budget</h4>
+                    <input type="range" id="budgetFilter" min="10000" max="200000" value="200000" step="10000" oninput="applyFilters()">
+                    <span id="budgetDisplay">₹2,00,000</span>
+                </div>
+            </div>
+            <div class="colleges-list">
+                <div id="collegesList"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="data.js"></script>
+    <script src="colleges.js"></script>
+</body>
+</html>

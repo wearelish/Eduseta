@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Colleges - Haryana College Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Haryana Colleges</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="colleges.html">Colleges</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="compare.html">Compare</a></li>
+                <li><a href="admission.html">Admission Guide</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>Compare Colleges</h2>
+        </div>
+    </section>
+
+    <section class="compare-section">
+        <div class="container">
+            <div class="select-colleges">
+                <h3>Select Colleges to Compare (2-3)</h3>
+                <div id="collegeSelector"></div>
+                <button onclick="compareSelected()">Compare</button>
+            </div>
+            <div id="comparisonTable"></div>
+        </div>
+    </section>
+
+    <script src="data.js"></script>
+    <script src="compare.js"></script>
+</body>
+</html>

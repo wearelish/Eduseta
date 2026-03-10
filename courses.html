@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Haryana College Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">Haryana Colleges</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="colleges.html">Colleges</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="compare.html">Compare</a></li>
+                <li><a href="admission.html">Admission Guide</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h2>Browse Courses</h2>
+        </div>
+    </section>
+
+    <section class="courses-section">
+        <div class="container">
+            <div class="course-cards">
+                <div class="course-card" onclick="location.href='course.html?course=btech'">
+                    <h3>B.Tech</h3>
+                    <p>Engineering programs in various specializations</p>
+                </div>
+                <div class="course-card" onclick="location.href='course.html?course=mba'">
+                    <h3>MBA</h3>
+                    <p>Management and business administration</p>
+                </div>
+                <div class="course-card" onclick="location.href='course.html?course=polytechnic'">
+                    <h3>Polytechnic</h3>
+                    <p>Diploma courses in engineering</p>
+                </div>
+                <div class="course-card" onclick="location.href='course.html?course=arts'">
+                    <h3>BA/BSc/BCom</h3>
+                    <p>Arts, Science, and Commerce programs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="data.js"></script>
+</body>
+</html>
