@@ -1,0 +1,2 @@
+# Eduseta
+college information website 
