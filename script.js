@@ -1,51 +1,59 @@
-// Home page functionality
-let currentBudget = 50000;
+// Home page - fetches from backend API
+const API = 'http://localhost:3000/api';
+
+let currentBudget = 200000;
 let currentCategory = 'all';
 
-function displayColleges(filteredColleges) {
-    const grid = document.getElementById('collegeGrid');
-    if (!grid) return;
-    
-    grid.innerHTML = filteredColleges.map(college => `
-        <div class="college-card" onclick="location.href='college.html?id=${college.id}'">
-            <h4>${college.name}</h4>
-            <p>📍 ${college.city} | ${college.type}</p>
-            <p>🎓 Placement: ${college.placement}</p>
-            <p class="price">💰 ₹${college.fees.toLocaleString()}/year</p>
-        </div>
-    `).join('');
+async function fetchColleges(params = {}) {
+  const query = new URLSearchParams(params).toString();
+  const res = await fetch(`${API}/colleges?${query}`);
+  return res.json();
 }
 
-function filterByCategory(category) {
-    currentCategory = category;
-    applyHomeFilters();
+function renderColleges(colleges) {
+  const grid = document.getElementById('collegeGrid');
+  if (!grid) return;
+
+  if (!colleges.length) {
+    grid.innerHTML = '<p>No colleges found.</p>';
+    return;
+  }
+
+  grid.innerHTML = colleges.map(c => `
+    <div class="college-card" onclick="location.href='college.html?id=${c.id}'">
+      <h4>${c.name}</h4>
+      <p>📍 ${c.city} | ${c.type}</p>
+      <p>🎓 Placement: ${c.placement}</p>
+      <p class="price">💰 ₹${Number(c.fees).toLocaleString()}/year</p>
+    </div>
+  `).join('');
 }
 
-function updateBudget(value) {
-    currentBudget = parseInt(value);
-    document.getElementById('budgetValue').textContent = currentBudget.toLocaleString();
-    applyHomeFilters();
+async function filterByCategory(category) {
+  currentCategory = category;
+  await applyHomeFilters();
 }
 
-function applyHomeFilters() {
-    let filtered = colleges.filter(c => c.fees <= currentBudget);
-    if (currentCategory !== 'all') {
-        filtered = filtered.filter(c => c.category === currentCategory);
-    }
-    displayColleges(filtered);
+async function updateBudget(value) {
+  currentBudget = parseInt(value);
+  document.getElementById('budgetValue').textContent = Number(currentBudget).toLocaleString();
+  await applyHomeFilters();
 }
 
-function searchColleges() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = colleges.filter(c => 
-        c.name.toLowerCase().includes(query) || 
-        c.city.toLowerCase().includes(query) ||
-        c.courses.some(course => course.includes(query))
-    );
-    displayColleges(filtered);
+async function applyHomeFilters() {
+  const params = { maxFees: currentBudget };
+  if (currentCategory !== 'all') params.category = currentCategory;
+  const colleges = await fetchColleges(params);
+  renderColleges(colleges);
 }
 
-// Initialize home page
+async function searchColleges() {
+  const query = document.getElementById('searchInput').value.trim();
+  const colleges = await fetchColleges(query ? { search: query } : {});
+  renderColleges(colleges);
+}
+
+// Init
 if (document.getElementById('collegeGrid')) {
-    displayColleges(colleges);
+  fetchColleges().then(renderColleges);
 }
