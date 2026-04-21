@@ -1,21 +1,33 @@
 # Haryana College Finder
 
-Frontend + Backend website to find colleges in Haryana.
+Frontend + Python backend for finding colleges in Haryana.
 
-## Setup
+## Tech Stack
+- Frontend: HTML, CSS, Vanilla JS
+- Backend: Python, FastAPI, SQLite (built-in, no extra DB needed)
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) v18+
+---
 
-### Install & Run
+## Setup & Run
+
+### 1. Install Python
+Download from https://python.org (v3.10 or higher)
+
+### 2. Install dependencies
 
 ```bash
 cd backend
-npm install
-npm start
+pip install -r requirements.txt
 ```
 
-Server starts at `http://localhost:3000` — the backend also serves the frontend automatically.
+### 3. Start the server
+
+```bash
+cd backend
+uvicorn main:app --reload --port 3000
+```
+
+Open http://localhost:3000 in your browser.
 
 ---
 
@@ -23,12 +35,14 @@ Server starts at `http://localhost:3000` — the backend also serves the fronten
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/colleges` | List all colleges. Filters: `?city=`, `?type=`, `?category=`, `?maxFees=`, `?search=` |
-| GET | `/api/colleges/:id` | Single college detail |
-| POST | `/api/colleges` | Add a new college |
-| PUT | `/api/colleges/:id` | Update a college |
-| DELETE | `/api/colleges/:id` | Delete a college |
-| GET | `/api/courses` | List all course types |
-| GET | `/api/courses/:courseType/colleges` | Colleges for a course (`btech`, `mba`, `polytechnic`, `arts`) |
-| POST | `/api/compare` | Compare 2-3 colleges — body: `{ "ids": [1, 2, 3] }` |
 | GET | `/api/health` | Health check |
+| GET | `/api/colleges` | List colleges. Filters: `?city=` `?type=` `?category=` `?maxFees=` `?search=` |
+| GET | `/api/colleges/{id}` | Single college detail |
+| POST | `/api/colleges` | Add a college |
+| PUT | `/api/colleges/{id}` | Update a college |
+| DELETE | `/api/colleges/{id}` | Delete a college |
+| GET | `/api/courses` | List course types |
+| GET | `/api/courses/{type}/colleges` | Colleges for a course (`btech` `mba` `polytechnic` `arts`) |
+| POST | `/api/compare` | Compare 2-3 colleges — body: `{"ids": [1, 2, 3]}` |
+
+Interactive API docs available at http://localhost:3000/docs
